@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Video Background</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="logo">
+                <a href="/" class="text-white px-4 font-sans text-xl font-bold">Remove Video Background</a>
+            </div>            
+        </div>
+    </header>
+    <main class="flex flex-col items-center min-h-screen py-20">
+        <section class="text-center">
+            <div class="mb-4">
+                <img src="{{ url_for('static', filename='images/remove.png') }}" alt="Remove Background Image" class="w-40 h-40 object-cover mx-auto rounded-full shadow-md">
+            </div>
+            <h1 class="text-4xl font-bold mb-4">Remove Video Background</h1>
+            <p class="text-lg mb-8">Elimina los fondos de tus videos!</p>
+            <div class="relative">
+                <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                    <form action="{{ url_for('video_bp.upload_video') }}" method="post" enctype="multipart/form-data" class="space-y-4">
+                        <div class="mt-12">
+                            <label for="upload" class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white py-2 px-2 rounded mr-4">
+                                Upload Clip
+                                <input type="file" name="file" class="hidden" id="upload" required>
+                            </label>          
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-2 rounded">Process</button>                  
+                        </div>
+                    </form>         
+                    <div class="text-gray-400 mt-4">Ingresa tu archivo en formato .mp4</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 py-4">
+        <div class="container mx-auto text-center text-gray-400">
+            &copy; 2024 IA y ML.
+        </div>
+    </footer>
+</body>
+</html>

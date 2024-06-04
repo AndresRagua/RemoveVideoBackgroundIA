@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Video Background</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <header class="bg-gray-800 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="logo">
+                <a href="/" class="text-white px-4 font-sans text-xl font-bold">Remove Video Background</a>
+            </div>            
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center py-12">
+        <section class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4">Remove Video Background</h1>
+            <p class="text-lg mb-8">Elimina los fondos de tus videos!</p>
+            <form action="{{ url_for('video_bp.upload_video') }}" method="post" enctype="multipart/form-data" class="space-y-4">
+                <label for="upload" class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded inline-block">
+                    Upload Clip
+                    <input type="file" name="file" class="hidden" id="upload" required>
+                </label>
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">Process</button>
+            </form>
+            <div class="text-gray-400 mt-4">Ingresa tu archivo en formato .mp4</div>
+        </section>
+
+        <section class="flex justify-center space-x-8 mt-12">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold mb-4">Original Video</h2>
+                <div class="relative bg-gray-800 p-4 rounded-lg shadow-lg inline-block">
+                    <video id="originalVideo" class="mx-auto mb-4 rounded shadow-lg" controls>
+                        <source src="{{ url_for('static', filename='videos/inputs/' + original_filename) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <div class="text-center">
+                <h2 class="text-2xl font-bold mb-4">Processed Video</h2>
+                <div class="relative bg-gray-800 p-4 rounded-lg shadow-lg inline-block">
+                    <video id="processedVideo" class="mx-auto mb-4 rounded shadow-lg" controls>
+                        <source src="{{ url_for('static', filename='videos/outputs/' + processed_filename_webm) }}" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="flex justify-center mt-4">
+                        <a href="{{ url_for('static', filename='videos/outputs/' + processed_filename_mp4) }}" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" download>Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 py-4">
+        <div class="container mx-auto text-center text-gray-400">
+            &copy; 2024 IA y ML.
+        </div>
+    </footer>
+</body>
+</html>
